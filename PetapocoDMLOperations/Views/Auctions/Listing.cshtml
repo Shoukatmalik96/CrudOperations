@@ -1,0 +1,38 @@
+﻿@model List<DMLOPerations_CS.Auction>
+@{
+	ViewBag.Title = "Listing";
+}
+
+<h2>Listing</h2>
+
+<table class="table">
+	<thead class="thead-dark">
+		<tr>
+			<th scope="col">Title</th>
+			<th scope="col">Description</th>
+			<th scope="col">Price</th>
+			<th scope="col">StartingDate</th>
+			<th scope="col">EndingDate</th>
+			<th scope="col">Actions</th>
+
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var auction in Model)
+		{
+			@:<tr>
+				<td>@auction.Title</td>
+				<td>@auction.Description</td>
+				<td>@auction.ActualAmount</td>
+				<td>@auction.StartingDate</td>
+				<td>@auction.EndingDate</td>
+				<td>@auction.EndingDate</td>
+				<td>
+					<Button data-id="@auction.AuctionID" class="btn btn bg-primary editButton">Edit</Button>
+					<Button data-id="@auction.AuctionID" class="btn btn-danger deleteButton">Delete</Button>
+
+				</td>
+			@:</tr>
+		}
+	</tbody>
+</table>

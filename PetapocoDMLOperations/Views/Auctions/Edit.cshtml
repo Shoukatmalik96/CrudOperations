@@ -1,0 +1,65 @@
+﻿@model DMLOPerations_CS.Auction
+@{
+	ViewBag.Title = "Edit";
+}
+
+
+<div class="modal-header">
+	<h5 class="modal-title">Edit Auction</h5>
+	<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		<span aria-hidden="true">&times;</span>
+	</button>
+</div>
+<form id="editForm" action="/Auctions/Edit" method="post">
+	<div class="modal-body">
+		<input name="AuctionID" type="hidden" value="@Model.AuctionID" />
+
+		<div class="form-group">
+			<label>Title</label>
+			<input class="form-control" name="Title" placeholder="Enter Auction Title" value="@Model.Title" />
+		</div>
+
+		<div class="form-group">
+			<label>Description</label>
+			<input class="form-control" name="Description" placeholder="Enter Auction Description" value="@Model.Description" />
+		</div>
+
+		<div class="form-group">
+			<label>Price</label>
+			<input class="form-control" name="ActualAmount" placeholder="Enter Auction Price" value="@Model.ActualAmount" />
+		</div>
+
+		<div class="form-group">
+			<label>StartingDate</label>
+			<input class="form-control" name="StartingDate" placeholder="Enter Starting Date" value="@Model.StartingDate" />
+		</div>
+
+		<div class="form-group">
+			<label>EndingDate</label>
+			<input class="form-control" name="EndingDate" placeholder="Enter Ending Date" value="@Model.EndingDate" />
+		</div>
+	</div>
+		
+	<div class="modal-footer">
+		<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+		<button id="saveButton" class="btn btn-success">Save</button>
+	</div>	
+</form>
+
+<script>
+
+	$("#saveButton").click(function () {
+		debugger;
+		$.ajax({
+			url: "@Url.Action("Edit","Auctions")",
+			type: "post",
+			data: $("#editForm").serialize()
+		}).done(function (response) {
+			//alert("Record  Inserted Successfuly");
+			window.location.reload();
+
+		}).fail(function () {
+			alert("There is some thing wrong ! please try agina ");
+		});
+	});
+</script>
