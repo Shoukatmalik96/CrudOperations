@@ -10,39 +10,37 @@
 	</button>
 </div>
 
-<form id="createForm" action="/Auctions/Create" method="post">
+
+@using(Html.BeginForm("Create", "Auctions", FormMethod.Get,new { id = "createForm" }))
+{
 	<div class="modal-body">
 		<div class="form-group">
-			<label>Title</label>
-			<input class="form-control" name="Title" placeholder="Enter Auction Title" />
+			@Html.TextBox("Title", null, new { @class = "form-control", @placeholder = "Enter Auction Title" })
 		</div>
 
 		<div class="form-group">
-			<label>Description</label>
-			<input class="form-control" name="Description" placeholder="Enter Auction Description" />
+			@Html.TextBox("Description", null, new { @class = "form-control", @placeholder = "Enter Auction Description" })
 		</div>
 
 		<div class="form-group">
-			<label>Price</label>
-			<input class="form-control" name="ActualAmount" placeholder="Enter Auction Price" />
+			@Html.TextBox("Price", null, new { @class = "form-control", @placeholder = "Enter Auction Price" })
 		</div>
 
 		<div class="form-group">
-			<label>StartingDate</label>
-			<input class="form-control" name="StartingDate" placeholder="Enter Starting Date" />
+			@Html.TextBox("StartingDate", null, new { @class = "form-control", @placeholder = "Enter Starting Date" })
 		</div>
 
 		<div class="form-group">
-			<label>EndingDate</label>
-			<input class="form-control" name="EndingDate" placeholder="Enter Ending Date" />
+			@Html.TextBox("EndingDate", null, new { @class = "form-control", @placeholder = "Enter Ending Date" })
 		</div>
 
 	</div>
 	<div class="modal-footer">
 		<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-		<button id="saveButton" class="btn btn-success" type="button">Save</button>
+		<input type="button" name="response" value="Save" id="saveButton" class="btn btn-success" />
+
 	</div>
-</form>
+}
 
 <script>
 
@@ -53,10 +51,8 @@
 			type: "post",
 			data: $("#createForm").serialize()
 		}).done(function (response) {
-			//alert("Record  Inserted Successfuly");
+			
 			window.location.reload();
-			//$("#listingArea").html(response);
-			//$("#formModal").modal("toggle");
 
 		}).fail(function () {
 			alert("There is some thing wrong ! please try agina ");

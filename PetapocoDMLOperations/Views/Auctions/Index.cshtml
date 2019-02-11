@@ -23,23 +23,33 @@
 					</tr>
 				</thead>
 				<tbody>
-					@foreach (var auction in Model.Auctions)
+					@foreach(var auction in Model.Auctions)
 					{
-						@:<tr>
-							<td>@auction.Title</td>
-							<td>@auction.Description</td>
-							<td>@auction.ActualAmount</td>
-							<td>@auction.StartingDate</td>
-							<td>@auction.EndingDate</td>
-							<td>@auction.EndingDate</td>
-							<td>
-								<!-- Button trigger modal -->
-								<Button type="button" data-id="@auction.AuctionID" class="btn btn bg-primary editButton" data-toggle="modal" data-target="#formModal">Edit</Button>
-								<Button type="button" data-id="@auction.AuctionID" class="btn btn-danger deleteButton" data-toggle="modal" data-target="#formModal">Delete</Button>
-							</td>
-						@:</tr>
+                     @:
+					 <tr>
+						<td>
+							@Html.DisplayFor(modelItem => auction.Title)
+						</td>
+						<td>
+							@Html.DisplayFor(modelItem => auction.Description)
+						</td>
+						<td>
+							@Html.DisplayFor(modelItem => auction.ActualAmount)
+						</td>
+						<td>
+							@Html.DisplayFor(modelItem => auction.StartingDate)
+						</td>
+						<td>
+							@Html.DisplayFor(modelItem => auction.EndingDate)
+						</td>
+						<td>
+							<!-- Button trigger modal -->
+							<Button type="button" data-id="@auction.AuctionID" class="btn btn bg-primary editButton" data-toggle="modal" data-target="#formModal">Edit</Button>
+							<Button type="button" data-id="@auction.AuctionID" class="btn btn-danger deleteButton" data-toggle="modal" data-target="#formModal">Delete</Button>
+						</td>
+					 </tr>
 					}
-				</tbody>
+					</tbody>
 			</table>
 
 			<!-- Button trigger modal -->
@@ -95,20 +105,18 @@
 
 					$(".deleteButton").click(function () {
 
-						//var result = confirm("Are you sure you want to delete this record ?");
-						//if (result == true) {
-							$.ajax({
-								url: "/Auctions/Delete/",
-								type: "get",
-								data: {
-									ID: $(this).attr("data-id")
-								}
+						$.ajax({
+							url: "/Auctions/Delete/",
+							type: "get",
+							data: {
+								ID: $(this).attr("data-id")
+							}
 
-							}).done(function (response) {
+						}).done(function (response) {
 
-								$("#contentArea").html(response);
-							})
-						//}
+							$("#contentArea").html(response);
+						})
+					
 					});
 			</script>
 		</div>

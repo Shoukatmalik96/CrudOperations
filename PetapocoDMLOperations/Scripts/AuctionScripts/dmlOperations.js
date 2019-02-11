@@ -2,8 +2,7 @@
 
 function Create(url) {
 
-	//debugger;
-	
+
 	$.ajax({
 		url: url,
 		type: "get"
